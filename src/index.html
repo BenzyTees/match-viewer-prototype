@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Match Viewer — continuous 0–90 replay from an event log</title>
+<style>
+  :root { color-scheme: dark; }
+  html, body { margin: 0; background: #0b0f14; color: #e6edf3; font: 14px/1.5 Inter, "Segoe UI", Helvetica, Arial, sans-serif; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 16px 16px 28px; }
+  header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 10px; }
+  h1 { font-size: 16px; font-weight: 700; margin: 0; letter-spacing: .2px; }
+  h1 span { color: #8b98a5; font-weight: 500; }
+  #info { color: #8b98a5; font-size: 13px; }
+  .stage { position: relative; aspect-ratio: 16 / 9; background: #000; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,.5); }
+  canvas { width: 100%; height: 100%; display: block; }
+  .bar { display: flex; gap: 10px; align-items: center; margin-top: 12px; flex-wrap: wrap; }
+  .bar .grow { flex: 1; }
+  button, label.btn { background: #161d26; color: #e6edf3; border: 1px solid #2a3542; border-radius: 8px; padding: 7px 13px; font: inherit; font-weight: 600; cursor: pointer; }
+  button:hover, label.btn:hover { background: #1f2934; }
+  #speeds { display: inline-flex; gap: 4px; background: #10161d; border: 1px solid #2a3542; border-radius: 10px; padding: 3px; }
+  #speeds button { border: 0; padding: 5px 11px; border-radius: 7px; background: transparent; color: #9fb0c0; }
+  #speeds button.on { background: #2b6cb0; color: #fff; }
+  #status { color: #8b98a5; font-variant-numeric: tabular-nums; min-width: 120px; text-align: right; }
+  .hint { color: #6b7886; font-size: 12px; margin-top: 10px; }
+  kbd { background: #161d26; border: 1px solid #2a3542; border-radius: 4px; padding: 0 5px; font: 11px/1.6 ui-monospace, monospace; }
+  input[type=file] { display: none; }
+  body.capture .wrap { padding: 0; max-width: none; }
+  body.capture header, body.capture .bar, body.capture .hint { display: none; }
+  body.capture .stage { border-radius: 0; box-shadow: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Match viewer <span>· continuous 0–90 replay from an event log · PixiJS + TypeScript</span></h1>
+    <div id="info"></div>
+  </header>
+  <div class="stage"><canvas id="stage" width="1280" height="720"></canvas></div>
+  <div class="bar">
+    <button id="play">Pause</button>
+    <div id="speeds"></div>
+    <div class="grow"></div>
+    <label class="btn" for="file">Load event log (JSON)</label><input id="file" type="file" accept="application/json">
+    <button id="reset">Sample match</button>
+    <div id="status">00:00</div>
+  </div>
+  <div class="hint">Click or drag on the timeline to seek anywhere: every frame is computed from the log and the clock alone, so seeking is exact and the replay is identical every time.
+    <kbd>space</kbd> play/pause · <kbd>←</kbd> <kbd>→</kbd> ±30 s (<kbd>shift</kbd> ±5 min) · <kbd>1</kbd>–<kbd>6</kbd> speed · drop a JSON log onto the page to load it.</div>
+</div>
+<script>/*__LOG__*/</script>
+<script>/*__APP__*/</script>
+</body>
+</html>
