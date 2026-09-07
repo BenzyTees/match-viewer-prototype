@@ -1,0 +1,21 @@
+{
+  "name": "match-viewer-prototype",
+  "version": "0.2.0",
+  "private": true,
+  "description": "2D football match viewer: continuous 0-90 replay from an event log. PixiJS + TypeScript, deterministic seek.",
+  "type": "module",
+  "scripts": {
+    "gen": "node --experimental-strip-types tools/gen_log.ts > data/match_log.json",
+    "typecheck": "tsc --noEmit",
+    "build": "node tools/build.mjs",
+    "test": "node --experimental-strip-types test/determinism.test.ts",
+    "record": "node tools/record.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^26.4.1",
+    "esbuild": "^0.25.0",
+    "pixi.js": "^8.20.1",
+    "playwright": "^1.50.0",
+    "typescript": "^5.7.0"
+  }
+}
